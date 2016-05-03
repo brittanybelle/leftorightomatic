@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Left-O-Right-O-Matic.ly</title>
+    <link rel="stylesheet" href="vendor/bootstrap.min.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main jumbotron -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Left-O-Right-O-Matic</h1>
+        <p>Simple. Powerful. A truly random, high-performance, on-demand left-or-right-chooser, right in the palm of your hand. With six 9s of anti-deterministic, high-performance randomness generation, you can rest easy knowing that no matter where you go, we'll be there to help you with the hard decisions.<br><br></p>
+        <div style="text-align: center;">
+          <button type="button" class="btn btn-lg btn-primary" onclick="doFancyLeftOrRightAlgorithm()">Try it!</button>
+        </div>
+        <div id="status-update-message" style="text-align: center;">
+          <p>Click the button!</p>
+        </div>
+        <div class="progress">
+          <div id="calculation-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <a href="#" id="left-indicator" role="button" class="btn btn-lg btn-default disabled" onclick="askWhy()">Left</a>
+          <a href="#" id="right-indicator" role="button" class="btn btn-lg btn-default disabled" onclick="askWhy()">Right</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Realiable</h2>
+          <p>We've teamed up with the world's <a href="http://booleans.io">leading boolean experts</a> to deliver the highest quality service possible. With industry-standard encryption and the latest boolean technologies, you can trust that your randomness is in good hands.</p>
+        </div>
+        <div class="col-md-4">
+          <h2>Simple</h2>
+          <p>We believe that choosing left or right can be simple. Let us do the hard work so that you can spend less time mulling over difficult decisions and more time doing what you really love.</p>
+       </div>
+        <div class="col-md-4">
+          <h2>Powerful</h2>
+          <p>More than three <a href="https://github.com/brittanywelsh/leftorightomatic">slightly obfuscating code paths</a> ensure that true randomness is guaranteed. Our team of hackers and statistics ninjas have a true passion for unneccesary ceremony. Forget quantum mechanics - your fate is in our hands now.</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2016 LORMatic, Inc.</p>
+      </footer>
+    </div> <!-- /container -->
+
+    <script src="vendor/jquery-2.2.3.min.js"></script>
+    <script src="leftorightomatic.js"></script>
+    <script>
+        function doFancyLeftOrRightAlgorithm() {
+
+            var statusText = document.getElementById("status-update-message");
+            var statusBar = document.getElementById("calculation-progress-bar");
+            var leftIndicator = document.getElementById("left-indicator");
+            var rightIndicator = document. getElementById("right-indicator");
+
+            statusBar.style.width = 0 + '%';
+            statusText.innerHTML = "<p>" + generateScientificallyRandomMessage() + "</p>";
+
+            leftIndicator.setAttribute("class", "btn btn-lg btn-default disabled");
+            rightIndicator.setAttribute("class", "btn btn-lg btn-default disabled");
+
+            var result = activateLeftORightOMatic();
+
+            var width = 1;
+            var interval = setInterval(frame, 10);
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    statusText.innerHTML = "<p>" + "Done!" + "</p>";
+                    if (result == "left") {
+                      leftIndicator.setAttribute("class", "btn btn-lg btn-success active");
+                    }
+                    else {
+                      rightIndicator.setAttribute("class", "btn btn-lg btn-success active");
+                    }
+                }
+                else {
+                    width++; 
+                    statusBar.style.width = width + '%'; 
+                }
+            }
+        }
+    </script>
+  </body>
+</html>
